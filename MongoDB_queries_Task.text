@@ -30,4 +30,4 @@ For the following question write the corresponding MongoDB queries
 =>  db.products.find({ product_color: "indigo", product_price: 492 })
 
 10.Delete the products which product price value are same
-=>  db.products.aggregate([{$group:{_id:'$product_price',sum:{$sum:1}}},{$match:{sum:{$gt:1}}}]).toArray().map((doc)=>{db.getCollection("products").deleteMany({product_price:doc._id})});
+db.products.aggregate([{$group:{_id:'$product_price',sum:{$sum:1}}},{$match:{sum:{$gt:1}}}]).toArray().forEach((doc)=>{db.getCollection("products").deleteMany({product_price:doc._id})});
